@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="auth-page">
+    <div class="auth-hero">
+        <span class="eyebrow">Start your journey</span>
+        <h1>Build a stronger profile with AI guidance.</h1>
+        <p>Create your account and unlock personalized career insights from your resume.</p>
+        <div class="hero-highlights">
+            <div class="hero-highlight">
+                <span>🤖</span>
+                <div><strong>Role insights</strong><small>Know what employers want</small></div>
+            </div>
+            <div class="hero-highlight">
+                <span>🧠</span>
+                <div><strong>Skill mapping</strong><small>Find your next leap forward</small></div>
+            </div>
+            <div class="hero-highlight">
+                <span>🗂️</span>
+                <div><strong>Saved history</strong><small>Track your progress over time</small></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="auth-card">
+        <h2>Create account</h2>
+        <p class="sub-text">Start your journey with AI Resume Analyzer</p>
+        <form method="POST" class="auth-form">
+            <label>
+                Email
+                <input type="email" name="email" placeholder="Enter your email" required>
+            </label>
+            <label>
+                Password
+                <input type="password" name="password" placeholder="Create your password" required>
+            </label>
+            <p class="sub-text">Use at least 6 characters</p>
+            <button class="btn-animated" type="submit">Sign Up</button>
+        </form>
+        <p class="switch-auth">Already have an account? <a href="/login">Login</a></p>
+    </div>
+</div>
+{% endblock %}

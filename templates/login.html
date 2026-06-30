@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="auth-page">
+    <div class="auth-hero">
+        <span class="eyebrow">Smart career growth</span>
+        <h1>Turn your resume into a roadmap.</h1>
+        <p>Analyze your experience, uncover missing skills, and get a tailored plan for your next role.</p>
+        <div class="hero-highlights">
+            <div class="hero-highlight">
+                <span>⚡</span>
+                <div><strong>Fast analysis</strong><small>Get ai-backed feedback instantly</small></div>
+            </div>
+            <div class="hero-highlight">
+                <span>📈</span>
+                <div><strong>Growth plan</strong><small>See exactly what to learn next</small></div>
+            </div>
+            <div class="hero-highlight">
+                <span>🎯</span>
+                <div><strong>Role focus</strong><small>Tailored for your dream job</small></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="auth-card">
+        <h2>Welcome back</h2>
+        <p class="sub-text">Login to continue your career journey</p>
+        <form method="POST" class="auth-form">
+            <label>
+                Email
+                <input type="email" name="email" placeholder="Enter your email" required>
+            </label>
+            <label>
+                Password
+                <input type="password" name="password" placeholder="Enter your password" required>
+            </label>
+            <button class="btn-animated" type="submit">Login</button>
+        </form>
+
+        <div class="auth-links">
+            <a href="#">Forgot Password?</a>
+        </div>
+
+        <p class="switch-auth">
+            Don’t have an account? <a href="/signup">Sign Up</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

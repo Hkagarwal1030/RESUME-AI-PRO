@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-heading">
+    <span class="eyebrow">Your history</span>
+    <h1>Past analyses</h1>
+    <p class="sub-text">Review your previous resume insights and keep improving your profile.</p>
+</div>
+
+{% if reports %}
+<div class="history-list">
+    {% for r in reports %}
+    <article class="card history-card">
+        <div class="history-top">
+            <h3>Resume snapshot</h3>
+            <span class="pill">Saved</span>
+        </div>
+        <p class="preview">{{ r.resume[:180] if r.resume else 'No resume text provided.' }}</p>
+
+        <div class="result-grid">
+            <div class="result-section">
+                <h4>Skills</h4>
+                <ul>
+                    {% for s in r.result.get("skills", []) %}
+                        <li>{{ s }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="result-section">
+                <h4>Missing Skills</h4>
+                <ul>
+                    {% for s in r.result.get("missing_skills", []) %}
+                        <li>{{ s }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="result-section">
+                <h4>Roadmap</h4>
+                <ul>
+                    {% for s in r.result.get("roadmap", []) %}
+                        <li>{{ s }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="result-section">
+                <h4>Interview Questions</h4>
+                <ul>
+                    {% for s in r.result.get("interview_questions", []) %}
+                        <li>{{ s }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </article>
+    {% endfor %}
+</div>
+{% else %}
+<div class="card empty-state">
+    No reports yet. Analyze your first resume to see it here.
+</div>
+{% endif %}
+{% endblock %}

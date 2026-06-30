@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="dashboard-hero">
+    <div>
+        <span class="eyebrow">Resume Intelligence</span>
+        <h1>Welcome, {{ user }}</h1>
+        <p class="sub-text">Paste a resume, upload a PDF or DOCX file, and discover the skills you need for your target role.</p>
+        <div class="hero-badges">
+            <span class="hero-badge">✨ AI-powered insights</span>
+            <span class="hero-badge">🚀 Startup-grade workflow</span>
+        </div>
+    </div>
+    <div class="hero-panel">
+        <div class="hero-panel-icon">🧠</div>
+        <div>
+            <strong>Career clarity</strong>
+            <p>Turn your experience into a sharper story.</p>
+        </div>
+    </div>
+</div>
+
+<div class="grid-layout">
+    <section class="card analysis-card">
+        <h3>Analyze your resume</h3>
+        <form method="POST" enctype="multipart/form-data" class="analysis-form">
+            <textarea name="resume" placeholder="Paste your resume here (optional)"></textarea>
+
+            <div class="upload-row">
+                <label class="file-field">
+                    <span>Upload resume file</span>
+                    <input type="file" name="file">
+                </label>
+            </div>
+
+            <input type="text" name="role" placeholder="Target role (e.g. Backend Developer)" required>
+            <button class="btn-animated" type="submit">Analyze Resume</button>
+        </form>
+    </section>
+
+    <section class="card">
+        <h3>What you get</h3>
+        <ul class="feature-list">
+            <li>Skill gap analysis tailored to your target role</li>
+            <li>Clear learning roadmap for career growth</li>
+            <li>Interview questions to help you prepare</li>
+        </ul>
+    </section>
+</div>
+
+{% if result %}
+<div class="card result-card">
+    {% if result.get("error") %}
+        <div class="error-box">Error: {{ result.get("error") }}</div>
+    {% else %}
+        <div class="result-header">
+            <h3>Analysis Results</h3>
+            <span class="pill">Ready</span>
+        </div>
+
+        <div class="result-grid">
+            <div class="result-section">
+                <h4>Skills</h4>
+                <ul>
+                    {% for s in result.get("skills", []) %}
+                        <li>{{ s }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="result-section">
+                <h4>Missing Skills</h4>
+                <ul>
+                    {% for s in result.get("missing_skills", []) %}
+                        <li>{{ s }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="result-section">
+                <h4>Roadmap</h4>
+                <ul>
+                    {% for s in result.get("roadmap", []) %}
+                        <li>{{ s }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="result-section">
+                <h4>Interview Questions</h4>
+                <ul>
+                    {% for s in result.get("interview_questions", []) %}
+                        <li>{{ s }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endif %}
+{% endblock %}

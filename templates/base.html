@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resume Analyzer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="topbar">
+            <div class="container nav-wrap">
+                <a href="/" class="brand">
+                    <span class="brand-mark">✦</span>
+                    <span>
+                        <strong>AI Resume</strong>
+                        <small>Analyzer</small>
+                    </span>
+                </a>
+                <nav class="nav-links">
+                    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle color mode">🌙</button>
+                    <a href="/history">History</a>
+                    <a href="/dashboard">Dashboard</a>
+                    <a href="/logout">Logout</a>
+                </nav>
+            </div>
+        </header>
+
+        <main class="container">
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer class="footer">
+            <p>© 2026 AI Resume Analyzer • Built for smarter career growth</p>
+        </footer>
+    </div>
+
+    <script>
+        const savedTheme = localStorage.getItem('theme');
+        const initialTheme = savedTheme || 'light';
+        document.body.setAttribute('data-theme', initialTheme);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('theme-toggle');
+            const applyTheme = (theme) => {
+                document.body.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+                if (toggle) {
+                    toggle.setAttribute('aria-pressed', String(theme === 'dark'));
+                    toggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+                }
+            };
+
+            applyTheme(initialTheme);
+
+            if (toggle) {
+                toggle.addEventListener('click', () => {
+                    const nextTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                    applyTheme(nextTheme);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
