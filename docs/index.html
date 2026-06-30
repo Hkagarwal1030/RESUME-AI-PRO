@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RESUME-AI-PRO | GitHub Pages Preview</title>
+    <meta name="description" content="A polished AI resume analyzer experience with resume insight, skill-gap analysis, and career roadmap guidance." />
+    <style>
+      :root {
+        --bg: #060816;
+        --surface: rgba(255,255,255,0.08);
+        --text: #f7f8ff;
+        --muted: #aeb7d3;
+        --accent: #7c8cff;
+        --accent-2: #41d1ff;
+        --border: rgba(255,255,255,0.16);
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, "Segoe UI", sans-serif;
+        background: radial-gradient(circle at top, #182147 0%, var(--bg) 60%);
+        color: var(--text);
+      }
+      .container { width: min(1120px, 92%); margin: 0 auto; }
+      header {
+        padding: 24px 0;
+        border-bottom: 1px solid var(--border);
+        background: rgba(6,8,22,0.5);
+        backdrop-filter: blur(10px);
+      }
+      .nav { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+      .brand { font-weight:800; font-size:1.1rem; letter-spacing:0.04em; }
+      .hero { padding: 72px 0 40px; display:grid; grid-template-columns:1.1fr 0.9fr; gap:28px; align-items:center; }
+      .hero h1 { font-size: clamp(2rem, 4vw, 3.2rem); margin: 0 0 14px; line-height:1.08; }
+      .hero p { font-size: 1.04rem; color: var(--muted); line-height:1.7; }
+      .cta { display:flex; flex-wrap:wrap; gap:12px; margin-top: 24px; }
+      .btn { display:inline-block; padding: 12px 16px; border-radius: 999px; text-decoration:none; font-weight:700; }
+      .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color:white; }
+      .btn-secondary { border:1px solid var(--border); color:var(--text); background: rgba(255,255,255,0.05); }
+      .hero-card { padding: 22px; border: 1px solid var(--border); border-radius: 24px; background: var(--surface); box-shadow: 0 20px 45px rgba(0,0,0,0.3); }
+      .hero-card img { width:100%; border-radius: 16px; border:1px solid var(--border); }
+      .section { padding: 26px 0 10px; }
+      .grid { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; }
+      .card { padding: 20px; border-radius: 20px; background: var(--surface); border: 1px solid var(--border); }
+      .card h3 { margin-top: 0; }
+      .card p { color: var(--muted); line-height: 1.65; }
+      footer { padding: 30px 0 40px; color: var(--muted); text-align:center; }
+      @media (max-width: 900px) { .hero, .grid { grid-template-columns:1fr; } }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container nav">
+        <div class="brand">RESUME-AI-PRO</div>
+        <a class="btn btn-secondary" href="https://github.com/Hkagarwal1030/RESUME-AI-PRO" target="_blank">View on GitHub</a>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <div>
+          <p style="text-transform:uppercase; letter-spacing:0.2em; color:#7c8cff; font-weight:700; margin-bottom:10px;">GitHub Pages preview</p>
+          <h1>Turn your resume into your next big opportunity.</h1>
+          <p>RESUME-AI-PRO showcases a futuristic AI career assistant experience focused on resume analysis, skill-gap detection, and actionable career roadmaps.</p>
+          <div class="cta">
+            <a class="btn btn-primary" href="https://github.com/Hkagarwal1030/RESUME-AI-PRO" target="_blank">Open Project</a>
+            <a class="btn btn-secondary" href="https://github.com/Hkagarwal1030/RESUME-AI-PRO#readme" target="_blank">Read README</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <img src="screenshot.png" alt="AI Resume Analyzer preview" />
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="grid">
+          <article class="card">
+            <h3>Skill gap intelligence</h3>
+            <p>Identify the missing capabilities for your target job and learn what matters most.</p>
+          </article>
+          <article class="card">
+            <h3>Structured roadmap</h3>
+            <p>Receive a practical path from your current profile toward your next role.</p>
+          </article>
+          <article class="card">
+            <h3>Interview-ready prep</h3>
+            <p>Practice with role-specific questions and strengthen your confidence before interviews.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      Built with Flask, modern UI, and GitHub Pages for a polished project showcase.
+    </footer>
+  </body>
+</html>
