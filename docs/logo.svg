@@ -1,0 +1,24 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" rx="120" fill="#060816"/>
+  <rect x="92" y="92" width="328" height="328" rx="68" fill="url(#bg)"/>
+  <path d="M170 180C170 163.431 183.431 150 200 150H312C328.569 150 342 163.431 342 180V332C342 348.569 328.569 362 312 362H200C183.431 362 170 348.569 170 332V180Z" fill="white" fill-opacity="0.14"/>
+  <path d="M214 214H298" stroke="#F7F8FF" stroke-width="18" stroke-linecap="round"/>
+  <path d="M214 252H276" stroke="#A6B3FF" stroke-width="18" stroke-linecap="round"/>
+  <path d="M214 290H260" stroke="#41D1FF" stroke-width="18" stroke-linecap="round"/>
+  <circle cx="208" cy="208" r="24" fill="url(#accent)"/>
+  <circle cx="304" cy="304" r="38" fill="url(#accent2)" fill-opacity="0.88"/>
+  <defs>
+    <linearGradient id="bg" x1="92" y1="92" x2="420" y2="420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#182147"/>
+      <stop offset="1" stop-color="#060816"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="184" y1="184" x2="232" y2="232" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7C8CFF"/>
+      <stop offset="1" stop-color="#41D1FF"/>
+    </linearGradient>
+    <linearGradient id="accent2" x1="266" y1="266" x2="342" y2="342" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#41D1FF"/>
+      <stop offset="1" stop-color="#7C8CFF"/>
+    </linearGradient>
+  </defs>
+</svg>

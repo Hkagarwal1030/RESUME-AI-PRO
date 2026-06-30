@@ -16,6 +16,9 @@ A modern Flask-based AI resume analyzer that helps users understand their curren
 ## 📸 Preview
 ![AI Resume Analyzer Screenshot](screenshot.png)
 
+## 🖼️ Project Brand
+![RESUME-AI-PRO Logo](docs/logo.svg)
+
 ## 🚀 Getting Started
 1. Create and activate a virtual environment
 2. Install dependencies:
