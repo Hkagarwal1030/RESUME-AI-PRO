@@ -14,7 +14,27 @@ A modern Flask-based AI resume analyzer that helps users understand their curren
 - Premium landing page and dashboard experience
 
 ## 📸 Preview
-![AI Resume Analyzer Screenshot](screenshot.png)
+## 📸 Project Screenshots
+
+| Sign Up | Login |
+|---------|-------|
+| <img src="screenshots/signup.png" width="450"> | <img src="screenshots/login.png" width="450"> |
+
+| Dashboard |
+|-----------|
+| <img src="screenshots/dashboard.png" width="900"> |
+
+| Analysis Results |
+|------------------|
+| <img src="screenshots/analysis-results.png" width="900"> |
+
+| Learning Roadmap |
+|------------------|
+| <img src="screenshots/roadmap.png" width="900"> |
+
+| Interview Preparation |
+|------------------------|
+| <img src="screenshots/interview-prep.png" width="900"> |
 
 ## 🖼️ Project Brand
 ![RESUME-AI-PRO Logo](docs/logo.svg)
