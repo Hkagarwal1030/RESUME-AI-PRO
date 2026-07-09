@@ -53,14 +53,32 @@
         <div class="error-box">Error: {{ result.get("error") }}</div>
     {% else %}
         <div class="result-header">
-            <h3>Analysis Results</h3>
+            <div>
+                <h3>Analysis Results</h3>
+                <p class="sub-text">Insights tailored to your target role with a clean learning plan and interview prep.</p>
+            </div>
             <span class="pill">Ready</span>
+        </div>
+
+        <div class="analysis-summary">
+            <div class="summary-card">
+                <strong>Current strengths</strong>
+                <p>{{ result.get("skills", []) | length }} key skills discovered</p>
+            </div>
+            <div class="summary-card">
+                <strong>Focus areas</strong>
+                <p>{{ result.get("missing_skills", []) | length }} skills to build</p>
+            </div>
+            <div class="summary-card">
+                <strong>Interview prep</strong>
+                <p>{{ result.get("interview_prep", []) | length }} question-answer pairs</p>
+            </div>
         </div>
 
         <div class="result-grid">
             <div class="result-section">
                 <h4>Skills</h4>
-                <ul>
+                <ul class="tag-list">
                     {% for s in result.get("skills", []) %}
                         <li>{{ s }}</li>
                     {% endfor %}
@@ -69,29 +87,62 @@
 
             <div class="result-section">
                 <h4>Missing Skills</h4>
-                <ul>
+                <ul class="tag-list">
                     {% for s in result.get("missing_skills", []) %}
                         <li>{{ s }}</li>
                     {% endfor %}
                 </ul>
             </div>
 
-            <div class="result-section">
+            <div class="result-section roadmap-section">
                 <h4>Roadmap</h4>
-                <ul>
-                    {% for s in result.get("roadmap", []) %}
-                        <li>{{ s }}</li>
+                <div class="roadmap-timeline">
+                    {% set steps = result.get("roadmap", [])[:10] %}
+                    {% for step in steps %}
+                        {% set title = (step.title if step.title is defined else (step['title'] if step['title'] is defined else (step if step is string else 'Step'))) %}
+                        {% set description = (step.description if step.description is defined else (step['description'] if step['description'] is defined else (None))) %}
+                        {% set actions = (step.actions if step.actions is defined else (step['actions'] if step['actions'] is defined else None)) %}
+                        <div class="timeline-item">
+                            <div class="timeline-step">{{ loop.index }}</div>
+                            <div class="timeline-body">
+                                <h5 class="timeline-title">{{ title | replace('Master','<span class="kw">Master</span>') | replace('Learn','<span class="kw">Learn</span>') | replace('Practice','<span class="kw">Practice</span>') | replace('Build','<span class="kw">Build</span>') | safe }}</h5>
+                                {% if description %}
+                                    <p class="sub-text">{{ description }}</p>
+                                {% elif actions %}
+                                    <ul class="timeline-actions">
+                                        {% for a in actions %}
+                                            <li>{{ a | replace('SQL','<span class="kw">SQL</span>') | replace('Python','<span class="kw">Python</span>') | replace('Tableau','<span class="kw">Tableau</span>') | safe }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% else %}
+                                    <p class="sub-text">{{ step if step is string else '' }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
                     {% endfor %}
-                </ul>
+                </div>
             </div>
 
-            <div class="result-section">
-                <h4>Interview Questions</h4>
-                <ul>
-                    {% for s in result.get("interview_questions", []) %}
-                        <li>{{ s }}</li>
-                    {% endfor %}
-                </ul>
+            <div class="result-section interview-section">
+                <h4>Interview prep</h4>
+                <div class="qa-list">
+                    {% if result.get("interview_prep") %}
+                        {% for item in result.get("interview_prep") %}
+                            <div class="qa-card">
+                                <h5>{{ item.question }}</h5>
+                                <p>{{ item.answer }}</p>
+                            </div>
+                        {% endfor %}
+                    {% elif result.get("interview_questions") %}
+                        <ul class="tag-list">
+                            {% for q in result.get("interview_questions", []) %}
+                                <li>{{ q }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p class="sub-text">No interview prep available yet. Submit a resume and target role to generate answers.</p>
+                    {% endif %}
+                </div>
             </div>
         </div>
     {% endif %}

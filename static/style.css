@@ -672,8 +672,143 @@ button:hover {
     color: var(--muted);
 }
 
+.tag-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+}
+
+.tag-list li {
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: rgba(91, 108, 255, 0.08);
+    color: var(--text);
+    font-weight: 600;
+    border: 1px solid rgba(91, 108, 255, 0.14);
+}
+
+.analysis-summary {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.summary-card {
+    padding: 18px 20px;
+    background: linear-gradient(135deg, rgba(91,108,255,0.12), rgba(124,58,237,0.08));
+    border: 1px solid rgba(91,108,255,0.14);
+    border-radius: 20px;
+}
+
+.summary-card strong {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text);
+}
+
+.roadmap-list,
+.qa-list {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 14px;
+}
+
+.roadmap-list {
+    padding-left: 20px;
+}
+
+.roadmap-list li {
+    padding: 16px 18px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(91,108,255,0.08), rgba(124,58,237,0.06));
+    border: 1px solid rgba(91,108,255,0.14);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+.qa-card {
+    padding: 18px;
+    border-radius: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.05);
+}
+
+.qa-card h5 {
+    margin: 0 0 10px;
+    font-size: 1rem;
+    color: var(--primary);
+}
+
+.qa-card p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.75;
+}
+
 .result-card {
     margin-top: 24px;
+}
+
+/* Roadmap timeline styles */
+.roadmap-timeline {
+    display: grid;
+    gap: 18px;
+}
+
+.timeline-item {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 16px;
+    align-items: start;
+}
+
+.timeline-step {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    box-shadow: 0 8px 20px rgba(91,108,255,0.18);
+}
+
+.timeline-body {
+    padding: 14px 18px;
+    border-radius: 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+}
+
+.timeline-title {
+    font-weight: 700;
+    margin: 0 0 8px;
+}
+
+.timeline-actions {
+    margin: 0;
+    padding-left: 18px;
+    color: var(--muted);
+}
+
+/* Important keyword font and color */
+.kw {
+    font-family: 'Merriweather', serif;
+    color: var(--accent);
+    font-weight: 900;
+}
+
+@media (max-width: 900px) {
+    .timeline-item {
+        grid-template-columns: 48px 1fr;
+    }
+    .timeline-step { width: 48px; height: 48px; }
 }
 
 .result-header {
