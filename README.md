@@ -18,7 +18,7 @@ A modern Flask-based AI resume analyzer that helps users understand their curren
 
 | Sign Up | Login |
 |---------|-------|
-| <img src="Screenshot/signup.png" width="450"> | <img src="Screenshot/login.png" width="450"> |
+| <img src="Screenshot/singup.png" width="450"> | <img src="Screenshot/login.png" width="450"> |
 
 | Dashboard |
 |-----------|
