@@ -1,27 +1,23 @@
 import os
 import json
 import ast
+import requests
 from dotenv import load_dotenv
-from openai import OpenAI
 
 load_dotenv()
 
 api_key = os.getenv("OPENROUTER_API_KEY")
 model_name = os.getenv("OPENROUTER_MODEL", "openai/gpt-oss-20b:free")
-
-client = None
-if api_key:
-    client = OpenAI(
-        api_key=api_key,
-        base_url="https://openrouter.ai/api/v1",
-    )
+base_url = os.getenv("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1")
 
 def analyze_resume(resume_text, user_goal):
-    """
-    Analyze resume based on user's target role.
+    """Analyze resume based on user's target role.
+
+    Uses a direct HTTP call to OpenRouter's Chat Completions API to avoid
+    runtime dependency incompatibilities with the OpenAI client library.
     """
 
-    if client is None:
+    if not api_key:
         return {
             "skills": [],
             "missing_skills": [],
@@ -60,22 +56,38 @@ Resume:
 """
 
     try:
-        response = client.chat.completions.create(
-            model=model_name,
-            temperature=0.3,
-            messages=[
-                {
-                    "role": "system",
-                    "content": "You are a strict hiring manager."
-                },
-                {
-                    "role": "user",
-                    "content": prompt
-                }
-            ]
-        )
+        url = f"{base_url}/chat/completions"
+        headers = {
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json",
+        }
+        payload = {
+            "model": model_name,
+            "temperature": 0.3,
+            "messages": [
+                {"role": "system", "content": "You are a strict hiring manager."},
+                {"role": "user", "content": prompt},
+            ],
+            "max_tokens": 1200,
+        }
 
-        content = response.choices[0].message.content.strip()
+        resp = requests.post(url, headers=headers, json=payload, timeout=30)
+        resp.raise_for_status()
+        data = resp.json()
+
+        # Safe extraction similar to the OpenAI response shape
+        content = ""
+        if isinstance(data, dict):
+            choices = data.get("choices") or []
+            if choices and isinstance(choices, list):
+                first = choices[0]
+                # Some providers return message under 'message' or 'delta'
+                msg = first.get("message") or first.get("delta") or {}
+                if isinstance(msg, dict):
+                    content = msg.get("content") or ""
+                else:
+                    content = first.get("text") or ""
+        content = content.strip()
 
         # Extract JSON safely
         start_index = content.find("{")
