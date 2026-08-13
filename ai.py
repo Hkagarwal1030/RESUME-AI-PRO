@@ -72,6 +72,15 @@ Resume:
         }
 
         resp = requests.post(url, headers=headers, json=payload, timeout=30)
+        if resp.status_code == 429:
+            return {
+                "skills": [],
+                "missing_skills": [],
+                "roadmap": [],
+                "interview_prep": [],
+                "error": "OpenRouter is rate-limiting requests right now. Please wait a few minutes and try again, or use a different model/key."
+            }
+
         resp.raise_for_status()
         data = resp.json()
 
@@ -157,7 +166,16 @@ Resume:
             "missing_skills": [],
             "roadmap": [],
             "interview_questions": [],
-            "error": "Invalid JSON response from AI"
+            "error": "Invalid JSON response from AI. Please try again in a moment."
+        }
+
+    except requests.RequestException as e:
+        return {
+            "skills": [],
+            "missing_skills": [],
+            "roadmap": [],
+            "interview_questions": [],
+            "error": f"AI provider request failed: {str(e)}"
         }
 
     except Exception as e:
