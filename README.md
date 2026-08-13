@@ -45,11 +45,34 @@ A modern Flask-based AI resume analyzer that helps users understand their curren
    ```bash
    pip install -r requirements.txt
    ```
-3. Run the app:
+3. Create a local environment file from [.env.example](.env.example)
+4. Run the app:
    ```bash
    python app.py
    ```
-4. Open: http://127.0.0.1:5000
+5. Open: http://127.0.0.1:5000
+
+## 🌐 Deploy to the Public Internet
+This app is now ready for a public deployment. The safest free setup is Render with a hosted database.
+
+### Recommended deployment flow
+1. Push the project to GitHub.
+2. Create a Render account and import the repository.
+3. Add these environment variables in Render:
+   - `SECRET_KEY`
+   - `OPENROUTER_API_KEY`
+   - `OPENROUTER_MODEL`
+   - `DATABASE_URL`
+4. Use the included [render.yaml](render.yaml) and [Procfile](Procfile) files.
+5. Deploy the service and share the generated public URL.
+
+### Environment values
+- `SECRET_KEY`: any long random string
+- `OPENROUTER_API_KEY`: your OpenRouter API key
+- `OPENROUTER_MODEL`: usually `openai/gpt-oss-20b:free`
+- `DATABASE_URL`: MySQL/Postgres connection string from your cloud database
+
+> For a public app, do not rely on your local machine or local SQLite database. Use a hosted database so everyone can access the same app and data.
 
 ## 🧠 Tech Stack
 - Flask

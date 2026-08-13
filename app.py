@@ -1,13 +1,16 @@
+import os
+import json
+
 from flask import Flask, render_template, request, redirect, session
 from ai import analyze_resume
 from db import Base, engine, SessionLocal
 import models
 import PyPDF2
 import docx
-import json
 
 app = Flask(__name__)
-app.secret_key = "Secret123"
+app.secret_key = os.getenv("SECRET_KEY", "change-me-in-production")
+app.config["SESSION_COOKIE_HTTPONLY"] = True
 
 Base.metadata.create_all(bind=engine)
 
@@ -215,6 +218,6 @@ def logout():
     session.pop("user", None)
     return redirect("/login")
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=int(os.getenv("PORT", 5000)), debug=False)
 
     

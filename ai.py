@@ -4,29 +4,31 @@ import ast
 from dotenv import load_dotenv
 from openai import OpenAI
 
-# Load environment variables
 load_dotenv()
 
-# Get API key from .env file
 api_key = os.getenv("OPENROUTER_API_KEY")
+model_name = os.getenv("OPENROUTER_MODEL", "openai/gpt-oss-20b:free")
 
-
-# Check if API key exists
-if not api_key:
-    raise RuntimeError(
-        "Missing OpenRouter API key. Add OPENROUTER_API_KEY in your .env file."
+client = None
+if api_key:
+    client = OpenAI(
+        api_key=api_key,
+        base_url="https://openrouter.ai/api/v1",
     )
-
-# Create OpenAI client
-client = OpenAI(
-    api_key=api_key,
-    base_url="https://openrouter.ai/api/v1",
-)
 
 def analyze_resume(resume_text, user_goal):
     """
-    Analyze resume based on user's target role
+    Analyze resume based on user's target role.
     """
+
+    if client is None:
+        return {
+            "skills": [],
+            "missing_skills": [],
+            "roadmap": [],
+            "interview_prep": [],
+            "error": "OPENROUTER_API_KEY is missing. Add it to your environment before deploying or testing the app."
+        }
 
     prompt = f"""
 You are an experienced hiring manager and career coach for data and analytics professionals.
@@ -59,7 +61,7 @@ Resume:
 
     try:
         response = client.chat.completions.create(
-            model = "openai/gpt-oss-20b:free",
+            model=model_name,
             temperature=0.3,
             messages=[
                 {
@@ -154,5 +156,3 @@ Resume:
             "interview_questions": [],
             "error": str(e)
         }
-    
-    print(api_key)

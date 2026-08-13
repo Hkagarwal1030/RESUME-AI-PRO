@@ -1,18 +1,24 @@
+import os
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
-# TiDB Cloud / MySQL Database URL
-DATABASE_URL = "mysql+pymysql://3Mh7tvHQy1t2ykB.root:HhGft7bS4aZRx8QR@gateway01.ap-southeast-1.prod.aws.tidbcloud.com:4000/test"
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///resume_app.db")
+
+connect_args = {}
+if DATABASE_URL.startswith("sqlite"):
+    connect_args = {"check_same_thread": False}
 
 engine = create_engine(
     DATABASE_URL,
-    pool_pre_ping=True
+    pool_pre_ping=True,
+    connect_args=connect_args,
 )
 
 SessionLocal = sessionmaker(
     autocommit=False,
     autoflush=False,
-    bind=engine
+    bind=engine,
 )
 
 Base = declarative_base()
