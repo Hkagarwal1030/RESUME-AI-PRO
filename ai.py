@@ -71,7 +71,7 @@ Resume:
             "max_tokens": 1200,
         }
 
-        resp = requests.post(url, headers=headers, json=payload, timeout=30)
+        resp = requests.post(url, headers=headers, json=payload, timeout=(10, 120))
         if resp.status_code == 429:
             return {
                 "skills": [],
